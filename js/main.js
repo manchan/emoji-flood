@@ -74,7 +74,6 @@ function init() {
     // 動きが止まった物体の計算を省略するかどうか
     var doSleep = true;
     world = new b2World( worldAABB, grav, doSleep );
-
     setWalls();
     reset();
 }
@@ -108,14 +107,13 @@ function reset() {
 
     createInstructions();
 
-    // 10個絵文字作成
-    for( i = 0; i < 10; i++ ) {
+    // 5個絵文字作成
+    for( i = 0; i < 5; i++ ) {
         createBall();
     }
 
     // 絵文字リロード
     reload();
-
 }
 
 //
@@ -202,7 +200,6 @@ function createInstructions() {
 
 
     var size = 350;
-
     var element = document.createElement( 'div' );
     element.width = size;
     element.height = size;
@@ -221,18 +218,18 @@ function createInstructions() {
 
     var graphics = circle.getContext( '2d' );
 
-    graphics.fillStyle = theme[ 3 ];
+    graphics.fillStyle = "#228b22";
     graphics.beginPath();
     graphics.arc( size * .5, size * .5, size * .5, 0, PI2, true );
     graphics.closePath();
+//    graphics.drawImage(presentImg,100,100);
     graphics.fill();
-
     element.appendChild( circle );
 
     text = document.createElement( 'div' );
     text.onSelectStart = null;
 	text.innerHTML =
-        '<span style="color:' + theme[0] + ';font-size:40px;">' +
+        '<span style="font-size:40px;" class="xmas-red">' +
             '🎅🐷🍺😜🎁'+
             '<br />' +
             'Merry ' +'Xmas!' +
@@ -282,8 +279,8 @@ function createBall( x, y ) {
     var x = x || Math.random() * stage[2];
     var y = y || Math.random() * -200;
 
-    var size = (Math.random() * 100 >> 0) + 20;
-
+    // 固定
+    var size = 40;
     var element = document.createElement( 'div' );
 
     element.width = size;
@@ -309,21 +306,6 @@ function createBall( x, y ) {
     circle.style.transform = 'translateZ(0)';
 
     var graphics = circle.getContext( '2d' );
-
-// cicle内のcircleの数
-//	var num_circles = Math.random() * 10 >> 0;
-    var num_circles = 1;
-
-    for (var i = size; i > 0; i-= (size/num_circles)) {
-//        graphics.fillStyle = theme[ (Math.random() * 4 >> 0) + 1];
-//        graphics.beginPath();
-//        graphics.arc(size * .5, size * .5, i * .5, 0, PI2, true);
-//        graphics.closePath();
-//        graphics.fill();
-    }
-
-//    element.appendChild( circle );
-
     var one_emoji;
 
     if(!emoji_kind){
@@ -339,19 +321,12 @@ function createBall( x, y ) {
     text.innerHTML = '<span style="color:' + theme[0] + ';font-size:40px;">'
         + one_emoji + '</span>';
 
-    text.style.color = theme[1];
-//    text.style.position = 'absolute';
-//    text.style.left = '0px';
-//    text.style.top = '0px';
-    text.style.fontFamily = 'Georgia';
-    text.style.textAlign = 'center';
     element.appendChild(text);
 
-    text.style.left = ((250 - text.clientWidth) / 2) +'px';
-    text.style.top = ((250 - text.clientHeight) / 2) +'px';
+//    text.style.left = ((250 - text.clientWidth) / 2) +'px';
+//    text.style.top = ((250 - text.clientHeight) / 2) +'px';
 
     var b2body = new b2BodyDef();
-
     var circle = new b2CircleDef();
     circle.radius = size >> 1;
     circle.density = 1;
@@ -359,7 +334,6 @@ function createBall( x, y ) {
     circle.restitution = 0.3;
     b2body.AddShape(circle);
     b2body.userData = {element: element};
-
     b2body.position.Set( x, y );
     b2body.linearVelocity.Set( Math.random() * 400 - 200, Math.random() * 400 - 200 );
     bodies.push( world.CreateBody(b2body) );
@@ -399,7 +373,6 @@ function loop() {
             text.style.OTransform = style;
             text.style.msTransform = style;
             text.style.transform = style;
-
         }
     }
 }
@@ -587,7 +560,6 @@ function twemojiGet(){
     function processResult(){
 
         if(xhr.readyState == 4) {
-            console.log(xhr.status);
             if(xhr.status == 200 || xhr.status == 201) {
                 // 絵文字表示
                 twemoji.parse(document.body);

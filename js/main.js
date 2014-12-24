@@ -200,6 +200,7 @@ function onWindowDeviceOrientation( event ) {
 
 function createInstructions() {
 
+
     var size = 350;
 
     var element = document.createElement( 'div' );
@@ -245,13 +246,11 @@ function createInstructions() {
             '<br />' +
             '<span style="font-size:15px;">' +
             '<br />' +
-            '1. Drag a ball.<br />' +
             'いろいろドラッグ、クリックしてみてね' +
-            '2.&nbsp;Click&nbsp;on&nbsp;the&nbsp;background.' +
-            '<br />3. Shake your browser.' +
-            'ブラウザをシェイクしてみてね'
-            '<br />4. Double click.<br />' +
-            '5. Play!</span>';
+            '<br/>' +
+            'ブラウザをシェイクしてみてね' +
+            '<br/>' +
+            'ダブルタップでもう一度！';
     text.style.color = theme[1];
     text.style.position = 'absolute';
     text.style.left = '0px';
@@ -580,7 +579,7 @@ function getBrowserDimensions() {
 function twemojiGet(){
 
     var xhr = new XMLHttpRequest();
-    var url = "http://twemoji.maxcdn.com/twemoji.min.js";
+    var url = "js/twemoji.min.js";
     xhr.open("GET" , url, true);
     xhr.onreadystatechange = processResult;
     xhr.send(null);
@@ -588,12 +587,13 @@ function twemojiGet(){
     function processResult(){
 
         if(xhr.readyState == 4) {
+            console.log(xhr.status);
             if(xhr.status == 200 || xhr.status == 201) {
-
                 // 絵文字表示
                 twemoji.parse(document.body);
             } else {
-                alert("Network Error");
+//                console.log("Network Error");
+//                alert("Network Error");
             }
         }
     }

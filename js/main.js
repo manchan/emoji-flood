@@ -247,7 +247,10 @@ function createInstructions() {
             '<br/>' +
             'ブラウザをシェイクしてみてね' +
             '<br/>' +
-            'ダブルタップでもう一度！';
+            'ダブルタップでもう一度！' +
+            '<br />' +
+            '<div class="fb-like" data-href="http://manchan.github.io/emoji-flood/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>' +
+            '<a href="https://twitter.com/share" class="twitter-share-button"  data-url="http://manchan.github.io/emoji-flood/" data-text="Emoji Flood" data-via="you_matz" data-lang="ja" data-count="none" data-hashtags="EmojiFlood">Tweet Button</a>';
     text.style.color = theme[1];
     text.style.position = 'absolute';
     text.style.left = '0px';

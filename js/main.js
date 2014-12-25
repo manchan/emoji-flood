@@ -199,13 +199,19 @@ function onWindowDeviceOrientation( event ) {
 function createInstructions() {
 
 
-    var size = 350;
+    if(window.innerWidth > 768){
+        var size = 350;
+    }
+    else{
+        var size = 250;
+    }
+
     var element = document.createElement( 'div' );
     element.width = size;
     element.height = size;
     element.style.position = 'absolute';
-    element.style.left = -300 + 'px';
-    element.style.top = -300 + 'px';
+    element.style.left = -(size-50) + 'px';
+    element.style.top = -(size-50) + 'px';
     element.style.cursor = "default";
 
     canvas.appendChild(element);
@@ -226,10 +232,25 @@ function createInstructions() {
     graphics.fill();
     element.appendChild( circle );
 
+//    var Ichiemoji;
+//
+//    Ichiemoji = document.createElement( 'div' );
+//    Ichiemoji.onSelectStart = null;
+//    var kind = Math.random() * emojis.length >> 0;
+//    one_emoji = emojis[kind][Math.random() * emojis[kind].length >> 0];
+//    Ichiemoji.innerHTML = '<img src="<img src="' + 'presentbox.png' +'" alt=""/>" alt=""/>';
+////    Ichiemoji.innerHTML = '<span style="color:' + theme[0] + ';font-size:125px;">'
+////        + one_emoji + '</span>';
+//    Ichiemoji.style.position = 'absolute';
+//    Ichiemoji.style.left = '0px';
+//    Ichiemoji.style.top = '0px';
+//
+//    element.appendChild(Ichiemoji);
+
     text = document.createElement( 'div' );
     text.onSelectStart = null;
 	text.innerHTML =
-        '<span style="font-size:40px;" class="xmas-red">' +
+        '<span style="font-size:35px;" class="xmas-red">' +
             '🎅🐷🍺😜🎁'+
             '<br />' +
             'Merry ' +'Xmas!' +
@@ -242,15 +263,12 @@ function createInstructions() {
             '<a href="javascript:void(0);" name="emoji_kind4">数字、記号</a>' +
             '<br />' +
             '<span style="font-size:15px;">' +
-            '<br />' +
             'いろいろドラッグ、クリックしてみてね' +
             '<br/>' +
             'ブラウザをシェイクしてみてね' +
             '<br/>' +
-            'ダブルタップでもう一度！' +
-            '<br />' +
-            '<div class="fb-like" data-href="http://manchan.github.io/emoji-flood/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>' +
-            '<a href="https://twitter.com/share" class="twitter-share-button"  data-url="http://manchan.github.io/emoji-flood/" data-text="Emoji Flood" data-via="you_matz" data-lang="ja" data-count="none" data-hashtags="EmojiFlood">Tweet Button</a>';
+            'ダブルタップでもう一度！<br/>' +
+            'By ' + '<a target="_blank" href="http://manchan.github.io/">Yuichi Matsuoka</a>';
     text.style.color = theme[1];
     text.style.position = 'absolute';
     text.style.left = '0px';
@@ -259,11 +277,10 @@ function createInstructions() {
     text.style.textAlign = 'center';
     element.appendChild(text);
 
-    text.style.left = ((350 - text.clientWidth) / 2) +'px';
-    text.style.top = ((350 - text.clientHeight) / 2) +'px';
+    text.style.left = ((size - text.clientWidth) / 2) +'px';
+    text.style.top = ((size - text.clientHeight) / 2) +'px';
 
     var b2body = new b2BodyDef();
-
     var circle = new b2CircleDef();
     circle.radius = size / 2;
     circle.density = 1;

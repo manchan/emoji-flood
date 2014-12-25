@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no,minimal-ui">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
     <title>Emoji Flood🌊🌊🌊</title>
     <style>
@@ -46,9 +45,21 @@
         .social{
             margin-top: 15px;
         }
+        .navbar-brand>img{
+            display: inline;
+        }
     </style>
 </head>
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/ja_KS/sdk.js#xfbml=1&appId=738992552848747&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <div>
     <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
         <div class="container">
@@ -59,7 +70,12 @@
                 <!--<span class="icon-bar"></span>-->
                 <!--<span class="icon-bar"></span>-->
                 <!--</button>-->
-                <a href="index.html" class="navbar-brand">Emoji Flood</a>
+
+                <a href="index.html" class="navbar-brand">Emoji Flood🎅</a>
+                <div class="social">
+                    <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fmanchan.github.io%2Femoji-flood%2F&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=21&amp;appId=738992552848747" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px; width: 190px;" allowTransparency="true"></iframe>
+                    <a href="https://twitter.com/share" class="twitter-share-button"  data-url="http://manchan.github.io/emoji-flood/" data-text="Emoji Flood!🎅🐷🍺😜🎁'" data-via="you_matz" data-lang="ja" data-count="none" data-hashtags="EmojiFlood">Tweet Button</a>
+                </div>
             </div>
             <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
                 <ul class="nav navbar-nav">
@@ -80,7 +96,6 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-
                 </ul>
             </nav>
         </div>

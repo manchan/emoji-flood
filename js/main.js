@@ -33,10 +33,12 @@ var mouse = { x: 0, y: 0 };
 var gravity = { x: 0, y: 1 };
 var PI2 = Math.PI * 2;
 var timeOfLastTouch = 0;
+var browser;
 
 
 $(document).ready(function(){
 
+    browser = getBrowser();
     init();
     play();
 
@@ -249,7 +251,7 @@ function createInstructions() {
     text = document.createElement( 'div' );
     text.onSelectStart = null;
 	text.innerHTML =
-        '<span style="color:' + theme[0] + ';font-size:40px;">' +
+        '<span style="color:' + theme[0] + ';font-size:30px;">' +
             '🎅🐷🍺😜🎁'+
             '<br />' +
             'Emoji Flood🌊🌊'+
@@ -299,7 +301,7 @@ function createBall( x, y ) {
     var y = y || Math.random() * -200;
 
     // 固定
-    var size = 40;
+    var size = 35;
     var element = document.createElement( 'div' );
 
     element.width = size;
@@ -581,7 +583,10 @@ function twemojiGet(){
         if(xhr.readyState == 4) {
             if(xhr.status == 200 || xhr.status == 201) {
                 // 絵文字表示
-//                twemoji.parse(document.body);
+                console.log(getBrowser());
+                if( browser == 'chrome'){
+                    twemoji.parse(document.body);
+                }
             } else {
 //                console.log("Network Error");
 //                alert("Network Error");
@@ -593,5 +598,44 @@ function twemojiGet(){
 function reload(){
     twemojiGet();
 }
+
+/**
+ *  ブラウザ名を取得
+ *
+ *  @return     ブラウザ名(ie6、ie7、ie8、ie9、ie10、ie11、chrome、safari、opera、firefox、unknown)
+ *
+ */
+var getBrowser = function(){
+    var ua = window.navigator.userAgent.toLowerCase();
+    var ver = window.navigator.appVersion.toLowerCase();
+    var name = 'unknown';
+
+    if (ua.indexOf("msie") != -1){
+        if (ver.indexOf("msie 6.") != -1){
+            name = 'ie6';
+        }else if (ver.indexOf("msie 7.") != -1){
+            name = 'ie7';
+        }else if (ver.indexOf("msie 8.") != -1){
+            name = 'ie8';
+        }else if (ver.indexOf("msie 9.") != -1){
+            name = 'ie9';
+        }else if (ver.indexOf("msie 10.") != -1){
+            name = 'ie10';
+        }else{
+            name = 'ie';
+        }
+    }else if(ua.indexOf('trident/7') != -1){
+        name = 'ie11';
+    }else if (ua.indexOf('chrome') != -1){
+        name = 'chrome';
+    }else if (ua.indexOf('safari') != -1){
+        name = 'safari';
+    }else if (ua.indexOf('opera') != -1){
+        name = 'opera';
+    }else if (ua.indexOf('firefox') != -1){
+        name = 'firefox';
+    }
+    return name;
+};
 
 

@@ -40,8 +40,7 @@ $(document).ready(function(){
     init();
     play();
 
-    $('a').on('click', function(){
-
+    $('a').live('click', function(){
         var kind;
         if(kind = this.name.match(/\d+/)[0]){
             emoji_kind = kind;
@@ -224,7 +223,7 @@ function createInstructions() {
 
     var graphics = circle.getContext( '2d' );
 
-    graphics.fillStyle = "#228b22";
+    graphics.fillStyle = theme[ 3 ];
     graphics.beginPath();
     graphics.arc( size * .5, size * .5, size * .5, 0, PI2, true );
     graphics.closePath();
@@ -250,10 +249,10 @@ function createInstructions() {
     text = document.createElement( 'div' );
     text.onSelectStart = null;
 	text.innerHTML =
-        '<span style="font-size:35px;" class="xmas-red">' +
+        '<span style="color:' + theme[0] + ';font-size:40px;">' +
             '🎅🐷🍺😜🎁'+
             '<br />' +
-            'Merry ' +'Xmas!' +
+            'Emoji Flood🌊🌊'+
             '</span>' +
             '<br />' +
             '<a href="javascript:void(0);" name="emoji_kind0">顔、感情</a>  ' +
@@ -582,7 +581,7 @@ function twemojiGet(){
         if(xhr.readyState == 4) {
             if(xhr.status == 200 || xhr.status == 201) {
                 // 絵文字表示
-                twemoji.parse(document.body);
+//                twemoji.parse(document.body);
             } else {
 //                console.log("Network Error");
 //                alert("Network Error");
